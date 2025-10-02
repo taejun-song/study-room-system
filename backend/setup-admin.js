@@ -32,6 +32,7 @@ async function main() {
         roleScope: 'STUDENT',
         maxUses: 100,
         usedCount: 0,
+        createdBy: admin.id,
       },
     });
 
@@ -41,6 +42,7 @@ async function main() {
         roleScope: 'PARENT',
         maxUses: 100,
         usedCount: 0,
+        createdBy: admin.id,
       },
     });
 
@@ -50,6 +52,7 @@ async function main() {
         roleScope: 'MENTOR',
         maxUses: 100,
         usedCount: 0,
+        createdBy: admin.id,
       },
     });
 
