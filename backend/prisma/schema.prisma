@@ -1,0 +1,290 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  STUDENT
+  PARENT
+  MENTOR
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum AttendanceSource {
+  MOBILE
+  KIOSK
+  ADMIN
+}
+
+enum AbsenceType {
+  ABSENT
+  LATE
+  EARLY_LEAVE
+  OFFSITE
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum AbsenceStatus {
+  PENDING
+  PARTIAL
+  APPROVED
+  REJECTED
+}
+
+enum QAStatus {
+  REQUESTED
+  ACCEPTED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum StudyLogSource {
+  POMODORO
+  MANUAL
+}
+
+enum MessageCategory {
+  FACILITY
+  POLICY
+  PAYMENT
+  OTHER
+}
+
+model User {
+  id            String       @id @default(uuid())
+  role          UserRole
+  name          String
+  phone         String       @unique
+  email         String       @unique
+  passwordHash  String       @map("password_hash")
+  status        UserStatus   @default(ACTIVE)
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @updatedAt @map("updated_at")
+
+  // Relations
+  parentLinks       ParentLink[]     @relation("ParentUser")
+  studentLinks      ParentLink[]     @relation("StudentUser")
+  mentorProfile     MentorProfile?
+  attendanceSessions AttendanceSession[]
+  absenceRequests   AbsenceRequest[]
+  qaBookingsAsStudent QABooking[]    @relation("StudentBookings")
+  qaBookingsAsMentor  QABooking[]    @relation("MentorBookings")
+  studyLogs         StudyLog[]
+  examScores        ExamScore[]
+  messageThreads    MessageThread[]
+  messages          Message[]
+  auditLogs         AuditLog[]
+  editedSessions    AttendanceSession[] @relation("EditedBy")
+  verifiedScores    ExamScore[]     @relation("VerifiedBy")
+  createdJoinCodes  JoinCode[]
+
+  @@map("users")
+}
+
+model JoinCode {
+  id          String    @id @default(uuid())
+  code        String    @unique
+  roleScope   UserRole  @map("role_scope")
+  centerId    String?   @map("center_id")
+  expiresAt   DateTime? @map("expires_at")
+  maxUses     Int?      @map("max_uses")
+  usedCount   Int       @default(0) @map("used_count")
+  createdBy   String    @map("created_by")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  creator     User      @relation(fields: [createdBy], references: [id])
+
+  @@map("join_codes")
+}
+
+model ParentLink {
+  id        String   @id @default(uuid())
+  parentId  String   @map("parent_id")
+  studentId String   @map("student_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  parent    User     @relation("ParentUser", fields: [parentId], references: [id])
+  student   User     @relation("StudentUser", fields: [studentId], references: [id])
+
+  @@unique([parentId, studentId])
+  @@map("parent_links")
+}
+
+model MentorProfile {
+  id          String   @id @default(uuid())
+  userId      String   @unique @map("user_id")
+  university  String?
+  major       String?
+  bio         String?
+  subjects    String[] // Array of subject names
+  ratingAvg   Float    @default(0) @map("rating_avg")
+  slotsRule   Json?    @map("slots_rule") // JSON for scheduling rules
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@map("mentor_profiles")
+}
+
+model AttendanceSession {
+  id         String            @id @default(uuid())
+  studentId  String            @map("student_id")
+  startAt    DateTime          @map("start_at")
+  endAt      DateTime?         @map("end_at")
+  source     AttendanceSource
+  editedBy   String?           @map("edited_by")
+  notes      String?
+  createdAt  DateTime          @default(now()) @map("created_at")
+  updatedAt  DateTime          @updatedAt @map("updated_at")
+
+  student    User              @relation(fields: [studentId], references: [id])
+  editor     User?             @relation("EditedBy", fields: [editedBy], references: [id])
+
+  @@map("attendance_sessions")
+}
+
+model AbsenceRequest {
+  id              String         @id @default(uuid())
+  studentId       String         @map("student_id")
+  date            DateTime
+  type            AbsenceType
+  startAt         DateTime?      @map("start_at")
+  endAt           DateTime?      @map("end_at")
+  reasonText      String         @map("reason_text")
+  evidenceUrl     String?        @map("evidence_url")
+  status          AbsenceStatus  @default(PENDING)
+  mentorDecision  ApprovalStatus @default(PENDING) @map("mentor_decision")
+  parentDecision  ApprovalStatus @default(PENDING) @map("parent_decision")
+  mentorComment   String?        @map("mentor_comment")
+  parentComment   String?        @map("parent_comment")
+  decidedAt       DateTime?      @map("decided_at")
+  createdAt       DateTime       @default(now()) @map("created_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
+
+  student         User           @relation(fields: [studentId], references: [id])
+
+  @@map("absence_requests")
+}
+
+model QABooking {
+  id          String    @id @default(uuid())
+  studentId   String    @map("student_id")
+  mentorId    String    @map("mentor_id")
+  subject     String
+  chapter     String?
+  summary     String
+  images      String[]  // Array of image URLs
+  slotStart   DateTime  @map("slot_start")
+  slotEnd     DateTime  @map("slot_end")
+  status      QAStatus  @default(REQUESTED)
+  rating      Int?
+  answerText  String?   @map("answer_text")
+  answerFiles String[]  @default([]) @map("answer_files")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  student     User      @relation("StudentBookings", fields: [studentId], references: [id])
+  mentor      User      @relation("MentorBookings", fields: [mentorId], references: [id])
+
+  @@map("qa_bookings")
+}
+
+model StudyLog {
+  id        String          @id @default(uuid())
+  studentId String          @map("student_id")
+  subject   String
+  chapter   String?
+  minutes   Int
+  source    StudyLogSource
+  loggedAt  DateTime        @default(now()) @map("logged_at")
+
+  student   User            @relation(fields: [studentId], references: [id])
+
+  @@map("study_logs")
+}
+
+model ExamScore {
+  id            String   @id @default(uuid())
+  studentId     String   @map("student_id")
+  examName      String   @map("exam_name")
+  examDate      DateTime @map("exam_date")
+  subjectScores Json     @map("subject_scores") // JSON object with subject: score
+  total         Int
+  proofUrl      String?  @map("proof_url")
+  verifiedBy    String?  @map("verified_by")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  student       User     @relation(fields: [studentId], references: [id])
+  verifier      User?    @relation("VerifiedBy", fields: [verifiedBy], references: [id])
+
+  @@map("exam_scores")
+}
+
+model MessageThread {
+  id        String    @id @default(uuid())
+  userId    String    @map("user_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  user      User      @relation(fields: [userId], references: [id])
+  messages  Message[]
+
+  @@map("message_threads")
+}
+
+model Message {
+  id          String        @id @default(uuid())
+  threadId    String        @map("thread_id")
+  senderId    String        @map("sender_id")
+  text        String
+  attachments String[]      @default([])
+  category    MessageCategory?
+  createdAt   DateTime      @default(now()) @map("created_at")
+
+  thread      MessageThread @relation(fields: [threadId], references: [id])
+  sender      User          @relation(fields: [senderId], references: [id])
+
+  @@map("messages")
+}
+
+model Announcement {
+  id            String   @id @default(uuid())
+  title         String
+  body          String
+  pinned        Boolean  @default(false)
+  audienceScope String[] @default([]) @map("audience_scope") // Array of role names
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("announcements")
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  actorId     String   @map("actor_id")
+  action      String
+  entityType  String   @map("entity_type")
+  entityId    String   @map("entity_id")
+  payload     Json?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  actor       User     @relation(fields: [actorId], references: [id])
+
+  @@map("audit_logs")
+}
