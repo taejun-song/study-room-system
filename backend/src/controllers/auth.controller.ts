@@ -57,6 +57,16 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
       },
     });
 
+    // Create mentor profile if role is MENTOR
+    if (role === 'MENTOR') {
+      await prisma.mentorProfile.create({
+        data: {
+          userId: user.id,
+          subjects: [], // Empty by default, can be updated later
+        },
+      });
+    }
+
     // Update join code usage
     await prisma.joinCode.update({
       where: { id: validJoinCode.id },
