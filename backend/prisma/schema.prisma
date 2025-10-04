@@ -74,10 +74,13 @@ model User {
   email         String       @unique
   passwordHash  String       @map("password_hash")
   status        UserStatus   @default(ACTIVE)
+  assignedMentorId String?   @map("assigned_mentor_id")
   createdAt     DateTime     @default(now()) @map("created_at")
   updatedAt     DateTime     @updatedAt @map("updated_at")
 
   // Relations
+  assignedMentor    User?            @relation("MentorAssignments", fields: [assignedMentorId], references: [id])
+  assignedStudents  User[]           @relation("MentorAssignments")
   parentLinks       ParentLink[]     @relation("ParentUser")
   studentLinks      ParentLink[]     @relation("StudentUser")
   mentorProfile     MentorProfile?

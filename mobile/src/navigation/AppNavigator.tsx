@@ -26,6 +26,7 @@ import MentorAbsenceApprovalScreen from '../screens/MentorAbsenceApprovalScreen'
 
 // Admin Screens
 import AdminDashboardScreen from '../screens/AdminDashboardScreen';
+import AdminManagementScreen from '../screens/AdminManagementScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -164,7 +165,10 @@ export default function AppNavigator() {
               <Stack.Screen name="MentorApp" component={MentorTabs} />
             )}
             {user.role === 'ADMIN' && (
-              <Stack.Screen name="AdminApp" component={AdminDashboardScreen} />
+              <>
+                <Stack.Screen name="AdminApp" component={AdminDashboardScreen} />
+                <Stack.Screen name="AdminManagement" component={AdminManagementScreen} />
+              </>
             )}
           </>
         )}

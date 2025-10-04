@@ -44,11 +44,13 @@ export const getAbsenceRequests = async (req: AuthRequest, res: Response): Promi
       return;
     }
 
-    let targetStudentId = userId;
+    let where: any = {};
 
     // Handle different roles
-    if (studentId) {
-      if (req.user?.role === 'PARENT') {
+    if (req.user?.role === 'STUDENT') {
+      where.studentId = userId;
+    } else if (req.user?.role === 'PARENT') {
+      if (studentId) {
         const link = await prisma.parentLink.findFirst({
           where: { parentId: userId, studentId: studentId as string },
         });
@@ -56,15 +58,28 @@ export const getAbsenceRequests = async (req: AuthRequest, res: Response): Promi
           res.status(403).json({ error: 'Not authorized' });
           return;
         }
-        targetStudentId = studentId as string;
-      } else if (['ADMIN', 'MENTOR'].includes(req.user?.role || '')) {
-        targetStudentId = studentId as string;
+        where.studentId = studentId;
+      } else {
+        // Get all linked students' requests
+        const links = await prisma.parentLink.findMany({
+          where: { parentId: userId },
+          select: { studentId: true },
+        });
+        where.studentId = { in: links.map(l => l.studentId) };
       }
+    } else if (req.user?.role === 'MENTOR') {
+      // Only show requests from assigned students
+      const assignedStudents = await prisma.user.findMany({
+        where: { assignedMentorId: userId, role: 'STUDENT' },
+        select: { id: true },
+      });
+      where.studentId = { in: assignedStudents.map(s => s.id) };
+    } else if (req.user?.role === 'ADMIN') {
+      if (studentId) {
+        where.studentId = studentId;
+      }
+      // Admin sees all if no studentId specified
     }
-
-    const where: any = {
-      studentId: targetStudentId,
-    };
 
     if (status) {
       where.status = status;
@@ -101,6 +116,14 @@ export const approveAbsence = async (req: AuthRequest, res: Response): Promise<v
 
     const request = await prisma.absenceRequest.findUnique({
       where: { id: requestId },
+      include: {
+        student: {
+          select: {
+            id: true,
+            assignedMentorId: true,
+          },
+        },
+      },
     });
 
     if (!request) {
@@ -111,6 +134,11 @@ export const approveAbsence = async (req: AuthRequest, res: Response): Promise<v
     const updateData: any = {};
 
     if (role === 'MENTOR') {
+      // Verify mentor is assigned to this student
+      if (request.student.assignedMentorId !== userId) {
+        res.status(403).json({ error: 'Not the assigned mentor for this student' });
+        return;
+      }
       updateData.mentorDecision = 'APPROVED';
       updateData.mentorComment = comment;
     } else if (role === 'PARENT') {
@@ -182,6 +210,14 @@ export const rejectAbsence = async (req: AuthRequest, res: Response): Promise<vo
 
     const request = await prisma.absenceRequest.findUnique({
       where: { id: requestId },
+      include: {
+        student: {
+          select: {
+            id: true,
+            assignedMentorId: true,
+          },
+        },
+      },
     });
 
     if (!request) {
@@ -192,6 +228,11 @@ export const rejectAbsence = async (req: AuthRequest, res: Response): Promise<vo
     const updateData: any = { status: 'REJECTED', decidedAt: new Date() };
 
     if (role === 'MENTOR') {
+      // Verify mentor is assigned to this student
+      if (request.student.assignedMentorId !== userId) {
+        res.status(403).json({ error: 'Not the assigned mentor for this student' });
+        return;
+      }
       updateData.mentorDecision = 'REJECTED';
       updateData.mentorComment = comment;
     } else if (role === 'PARENT') {

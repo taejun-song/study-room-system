@@ -219,3 +219,98 @@ export const updateUserStatus = async (req: AuthRequest, res: Response): Promise
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+export const assignMentor = async (req: AuthRequest, res: Response): Promise<void> => {
+  try {
+    const { studentId, mentorId } = req.body;
+
+    // Verify student and mentor exist with correct roles
+    const student = await prisma.user.findFirst({
+      where: { id: studentId, role: 'STUDENT' },
+    });
+
+    const mentor = await prisma.user.findFirst({
+      where: { id: mentorId, role: 'MENTOR' },
+    });
+
+    if (!student) {
+      res.status(404).json({ error: 'Student not found' });
+      return;
+    }
+
+    if (!mentor) {
+      res.status(404).json({ error: 'Mentor not found' });
+      return;
+    }
+
+    // Assign mentor to student
+    const updatedStudent = await prisma.user.update({
+      where: { id: studentId },
+      data: { assignedMentorId: mentorId },
+      include: {
+        assignedMentor: {
+          select: { id: true, name: true, email: true },
+        },
+      },
+    });
+
+    // Create audit log
+    await prisma.auditLog.create({
+      data: {
+        actorId: req.user!.userId,
+        action: 'ASSIGN_MENTOR',
+        entityType: 'User',
+        entityId: studentId,
+        payload: { mentorId },
+      },
+    });
+
+    res.json({
+      message: 'Mentor assigned successfully',
+      student: updatedStudent,
+    });
+  } catch (error) {
+    console.error('Assign mentor error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+export const getStudentAssignments = async (req: AuthRequest, res: Response): Promise<void> => {
+  try {
+    const { studentId } = req.params;
+
+    const student = await prisma.user.findUnique({
+      where: { id: studentId },
+      include: {
+        assignedMentor: {
+          select: { id: true, name: true, email: true },
+        },
+        studentLinks: {
+          include: {
+            parent: {
+              select: { id: true, name: true, email: true, phone: true },
+            },
+          },
+        },
+      },
+    });
+
+    if (!student) {
+      res.status(404).json({ error: 'Student not found' });
+      return;
+    }
+
+    res.json({
+      student: {
+        id: student.id,
+        name: student.name,
+        email: student.email,
+        assignedMentor: student.assignedMentor,
+        parents: student.studentLinks.map(link => link.parent),
+      },
+    });
+  } catch (error) {
+    console.error('Get student assignments error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};

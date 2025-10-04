@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function AdminDashboardScreen() {
+export default function AdminDashboardScreen({ navigation }: any) {
   const { user, logout } = useAuth();
 
   const handleLogout = async () => {
@@ -28,14 +28,17 @@ export default function AdminDashboardScreen() {
           <Text style={styles.cardText}>Admin features coming soon...</Text>
         </View>
 
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>User Management</Text>
-          <Text style={styles.cardText}>Manage students, parents, and mentors</Text>
-        </View>
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => navigation.navigate('AdminManagement')}
+        >
+          <Text style={styles.cardTitle}>Student Assignments</Text>
+          <Text style={styles.cardText}>Assign mentors and link parents to students</Text>
+        </TouchableOpacity>
 
         <View style={styles.card}>
           <Text style={styles.cardTitle}>System Settings</Text>
-          <Text style={styles.cardText}>Configure system preferences</Text>
+          <Text style={styles.cardText}>Configure system preferences (Coming soon)</Text>
         </View>
 
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
