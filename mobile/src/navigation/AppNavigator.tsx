@@ -135,6 +135,16 @@ function MentorTabs() {
   );
 }
 
+// Admin Stack Navigator
+function AdminStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="AdminDashboard" component={AdminDashboardScreen} />
+      <Stack.Screen name="AdminManagement" component={AdminManagementScreen} />
+    </Stack.Navigator>
+  );
+}
+
 
 export default function AppNavigator() {
   const { user, loading } = useAuth();
@@ -165,10 +175,7 @@ export default function AppNavigator() {
               <Stack.Screen name="MentorApp" component={MentorTabs} />
             )}
             {user.role === 'ADMIN' && (
-              <>
-                <Stack.Screen name="AdminApp" component={AdminDashboardScreen} />
-                <Stack.Screen name="AdminManagement" component={AdminManagementScreen} />
-              </>
+              <Stack.Screen name="AdminApp" component={AdminStack} />
             )}
           </>
         )}
