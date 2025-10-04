@@ -23,22 +23,25 @@ export default function AdminDashboardScreen({ navigation }: any) {
       </View>
 
       <View style={styles.content}>
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>System Overview</Text>
-          <Text style={styles.cardText}>Admin features coming soon...</Text>
-        </View>
-
         <TouchableOpacity
           style={styles.card}
           onPress={() => navigation.navigate('AdminManagement')}
         >
-          <Text style={styles.cardTitle}>Student Assignments</Text>
+          <Text style={styles.cardTitle}>👥 User Management</Text>
           <Text style={styles.cardText}>Assign mentors and link parents to students</Text>
+          <Text style={styles.tapText}>Tap to open →</Text>
         </TouchableOpacity>
 
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>System Settings</Text>
-          <Text style={styles.cardText}>Configure system preferences (Coming soon)</Text>
+        <View style={styles.cardDisabled}>
+          <Text style={styles.cardTitle}>📊 System Overview</Text>
+          <Text style={styles.cardText}>View system statistics and analytics</Text>
+          <Text style={styles.comingSoonText}>Coming soon</Text>
+        </View>
+
+        <View style={styles.cardDisabled}>
+          <Text style={styles.cardTitle}>⚙️ System Settings</Text>
+          <Text style={styles.cardText}>Configure system preferences</Text>
+          <Text style={styles.comingSoonText}>Coming soon</Text>
         </View>
 
         <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
@@ -81,7 +84,16 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 16,
     borderWidth: 1,
+    borderColor: '#6B7280',
+  },
+  cardDisabled: {
+    backgroundColor: '#1F2937',
+    borderRadius: 12,
+    padding: 20,
+    marginBottom: 16,
+    borderWidth: 1,
     borderColor: '#374151',
+    opacity: 0.6,
   },
   cardTitle: {
     fontSize: 18,
@@ -93,6 +105,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#E5E7EB',
     fontWeight: '500',
+    marginBottom: 8,
+  },
+  tapText: {
+    fontSize: 12,
+    color: '#10B981',
+    fontWeight: '600',
+  },
+  comingSoonText: {
+    fontSize: 12,
+    color: '#9CA3AF',
+    fontWeight: '600',
+    fontStyle: 'italic',
   },
   logoutButton: {
     backgroundColor: '#DC2626',

@@ -64,6 +64,8 @@ export default function LoginScreen({ navigation }: Props) {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+          autoComplete="password"
+          textContentType="password"
         />
 
         <TouchableOpacity

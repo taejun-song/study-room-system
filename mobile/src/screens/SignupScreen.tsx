@@ -98,6 +98,8 @@ export default function SignupScreen({ navigation }: Props) {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+          autoComplete="password-new"
+          textContentType="newPassword"
         />
 
         <TextInput
@@ -107,6 +109,8 @@ export default function SignupScreen({ navigation }: Props) {
           value={confirmPassword}
           onChangeText={setConfirmPassword}
           secureTextEntry
+          autoComplete="password-new"
+          textContentType="newPassword"
         />
 
         <View style={styles.pickerContainer}>

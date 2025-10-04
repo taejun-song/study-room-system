@@ -42,18 +42,24 @@ export default function AdminManagementScreen() {
 
   const loadData = async () => {
     try {
+      console.log('Loading admin data...');
       const [studentsRes, mentorsRes, parentsRes] = await Promise.all([
         api.get('/admin/users?role=STUDENT'),
         api.get('/admin/users?role=MENTOR'),
         api.get('/admin/users?role=PARENT'),
       ]);
 
+      console.log('Students:', studentsRes.data.users);
+      console.log('Mentors:', mentorsRes.data.users);
+      console.log('Parents:', parentsRes.data.users);
+
       setStudents(studentsRes.data.users);
       setMentors(mentorsRes.data.users);
       setParents(parentsRes.data.users);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Load data error:', error);
-      Alert.alert('Error', 'Failed to load data');
+      console.error('Error response:', error.response?.data);
+      Alert.alert('Error', error.response?.data?.error || 'Failed to load data');
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -62,12 +68,15 @@ export default function AdminManagementScreen() {
 
   const loadStudentAssignments = async (studentId: string) => {
     try {
+      console.log('Loading assignments for student:', studentId);
       const response = await api.get(`/admin/students/${studentId}/assignments`);
+      console.log('Student assignments:', response.data.student);
       setSelectedStudent(response.data.student);
       setSelectedMentorId(response.data.student.assignedMentor?.id || '');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Load student assignments error:', error);
-      Alert.alert('Error', 'Failed to load student assignments');
+      console.error('Error response:', error.response?.data);
+      Alert.alert('Error', error.response?.data?.error || 'Failed to load student assignments');
     }
   };
 
@@ -78,13 +87,17 @@ export default function AdminManagementScreen() {
     }
 
     try {
-      await api.post('/admin/assign-mentor', {
+      console.log('Assigning mentor:', selectedMentorId, 'to student:', selectedStudent.id);
+      const response = await api.post('/admin/assign-mentor', {
         studentId: selectedStudent.id,
         mentorId: selectedMentorId,
       });
+      console.log('Assign mentor response:', response.data);
       Alert.alert('Success', 'Mentor assigned successfully');
       loadStudentAssignments(selectedStudent.id);
     } catch (error: any) {
+      console.error('Assign mentor error:', error);
+      console.error('Error response:', error.response?.data);
       Alert.alert('Error', error.response?.data?.error || 'Failed to assign mentor');
     }
   };
@@ -96,14 +109,18 @@ export default function AdminManagementScreen() {
     }
 
     try {
-      await api.post('/admin/link-parent', {
+      console.log('Linking parent:', selectedParentId, 'to student:', selectedStudent.id);
+      const response = await api.post('/admin/link-parent', {
         studentId: selectedStudent.id,
         parentId: selectedParentId,
       });
+      console.log('Link parent response:', response.data);
       Alert.alert('Success', 'Parent linked successfully');
       loadStudentAssignments(selectedStudent.id);
       setSelectedParentId('');
     } catch (error: any) {
+      console.error('Link parent error:', error);
+      console.error('Error response:', error.response?.data);
       Alert.alert('Error', error.response?.data?.error || 'Failed to link parent');
     }
   };
@@ -132,12 +149,13 @@ export default function AdminManagementScreen() {
             <Picker
               selectedValue={selectedStudent?.id || ''}
               onValueChange={(value) => {
+                console.log('Student picker changed:', value);
                 if (value) {
                   loadStudentAssignments(value);
                 }
               }}
               style={styles.picker}
-              itemStyle={styles.pickerItem}
+              dropdownIconColor="#FFFFFF"
             >
               <Picker.Item label="Choose a student..." value="" color="#9CA3AF" />
               {students.map((student) => (
@@ -187,9 +205,12 @@ export default function AdminManagementScreen() {
               <View style={styles.pickerContainer}>
                 <Picker
                   selectedValue={selectedMentorId}
-                  onValueChange={setSelectedMentorId}
+                  onValueChange={(value) => {
+                    console.log('Mentor picker changed:', value);
+                    setSelectedMentorId(value);
+                  }}
                   style={styles.picker}
-                  itemStyle={styles.pickerItem}
+                  dropdownIconColor="#FFFFFF"
                 >
                   <Picker.Item label="Select a mentor..." value="" color="#9CA3AF" />
                   {mentors.map((mentor) => (
@@ -213,9 +234,12 @@ export default function AdminManagementScreen() {
               <View style={styles.pickerContainer}>
                 <Picker
                   selectedValue={selectedParentId}
-                  onValueChange={setSelectedParentId}
+                  onValueChange={(value) => {
+                    console.log('Parent picker changed:', value);
+                    setSelectedParentId(value);
+                  }}
                   style={styles.picker}
-                  itemStyle={styles.pickerItem}
+                  dropdownIconColor="#FFFFFF"
                 >
                   <Picker.Item label="Select a parent..." value="" color="#9CA3AF" />
                   {parents.map((parent) => (
