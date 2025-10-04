@@ -24,6 +24,9 @@ import MentorDashboardScreen from '../screens/MentorDashboardScreen';
 import MentorQAManagementScreen from '../screens/MentorQAManagementScreen';
 import MentorAbsenceApprovalScreen from '../screens/MentorAbsenceApprovalScreen';
 
+// Admin Screens
+import AdminDashboardScreen from '../screens/AdminDashboardScreen';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -131,10 +134,6 @@ function MentorTabs() {
   );
 }
 
-// Placeholder for Admin screen
-function PlaceholderScreen() {
-  return null;
-}
 
 export default function AppNavigator() {
   const { user, loading } = useAuth();
@@ -165,7 +164,7 @@ export default function AppNavigator() {
               <Stack.Screen name="MentorApp" component={MentorTabs} />
             )}
             {user.role === 'ADMIN' && (
-              <Stack.Screen name="AdminApp" component={PlaceholderScreen} />
+              <Stack.Screen name="AdminApp" component={AdminDashboardScreen} />
             )}
           </>
         )}

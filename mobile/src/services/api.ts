@@ -1,9 +1,9 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getApiUrl } from '../../config';
 
-// Use your computer's IP for real device testing
-// Change to 'localhost' only if testing on iOS simulator/Android emulator
-const API_URL = 'http://192.168.68.55:3001/api';
+// API URL is now managed in config.ts for easy updates
+const API_URL = getApiUrl();
 
 const api = axios.create({
   baseURL: API_URL,
