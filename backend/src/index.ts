@@ -8,6 +8,7 @@ import qaRoutes from './routes/qa.routes';
 import analyticsRoutes from './routes/analytics.routes';
 import messageRoutes from './routes/message.routes';
 import adminRoutes from './routes/admin.routes';
+import parentRoutes from './routes/parent.routes';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use('/api/qa', qaRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/parent', parentRoutes);
 
 // Error handling middleware
 app.use((err: any, req: Request, res: Response, next: any) => {

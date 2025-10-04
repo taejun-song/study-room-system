@@ -33,17 +33,16 @@ export default function ParentDashboardScreen({ navigation }: any) {
 
   const loadChildrenList = async () => {
     try {
-      // In a real app, this would fetch parent-student links
-      // For now, we'll simulate with a placeholder
-      const mockChildren = [
-        { id: 'student1', name: 'Child 1' },
-      ];
-      setChildren(mockChildren);
-      if (mockChildren.length > 0) {
-        setSelectedChild(mockChildren[0]);
+      // Fetch actual parent-student links
+      const response = await api.get('/parent/children');
+      const linkedChildren = response.data.children || [];
+      setChildren(linkedChildren);
+      if (linkedChildren.length > 0) {
+        setSelectedChild(linkedChildren[0]);
       }
     } catch (error) {
       console.error('Load children error:', error);
+      Alert.alert('Error', 'Failed to load children');
     }
   };
 
