@@ -293,8 +293,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   filterTabs: {
     flexDirection: 'row',
@@ -315,11 +315,12 @@ const styles = StyleSheet.create({
   },
   filterTabText: {
     fontSize: 14,
-    color: '#9CA3AF',
-    fontWeight: '500',
+    color: '#D1D5DB',
+    fontWeight: '600',
   },
   filterTabTextActive: {
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   content: {
     flex: 1,
@@ -330,8 +331,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    color: '#9CA3AF',
+    color: '#D1D5DB',
     fontSize: 14,
+    fontWeight: '500',
   },
   bookingCard: {
     backgroundColor: '#1F2937',
@@ -349,13 +351,14 @@ const styles = StyleSheet.create({
   },
   studentName: {
     fontSize: 16,
-    fontWeight: '500',
-    color: '#F9FAFB',
+    fontWeight: '600',
+    color: '#FFFFFF',
     marginBottom: 4,
   },
   bookingSubject: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
   },
   statusBadge: {
     paddingHorizontal: 8,
@@ -369,12 +372,14 @@ const styles = StyleSheet.create({
   },
   bookingTime: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
     marginBottom: 8,
   },
   summary: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
     marginBottom: 12,
   },
   questionImage: {
@@ -411,7 +416,8 @@ const styles = StyleSheet.create({
   },
   answerLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '600',
     marginBottom: 8,
   },
   answerInput: {
@@ -420,8 +426,9 @@ const styles = StyleSheet.create({
     borderColor: '#374151',
     borderRadius: 8,
     padding: 12,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontSize: 14,
+    fontWeight: '500',
     minHeight: 100,
     textAlignVertical: 'top',
     marginBottom: 12,
@@ -448,8 +455,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageButtonText: {
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontSize: 14,
+    fontWeight: '600',
   },
   answerButtons: {
     flexDirection: 'row',
@@ -463,7 +471,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cancelButtonText: {
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontSize: 14,
     fontWeight: '600',
   },
@@ -487,12 +495,14 @@ const styles = StyleSheet.create({
   },
   completedLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '600',
     marginBottom: 4,
   },
   completedText: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
     marginBottom: 8,
   },
   answerImageDisplay: {

@@ -177,8 +177,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   periodSelector: {
     flexDirection: 'row',
@@ -199,12 +199,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#6B7280',
   },
   periodText: {
-    color: '#9CA3AF',
+    color: '#D1D5DB',
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   periodTextActive: {
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   content: {
     flex: 1,
@@ -221,18 +222,20 @@ const styles = StyleSheet.create({
   },
   myRankLabel: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '600',
     marginBottom: 8,
   },
   myRankValue: {
     fontSize: 48,
-    fontWeight: '300',
+    fontWeight: '700',
     color: '#10B981',
     marginBottom: 4,
   },
   myRankHours: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '500',
   },
   card: {
     backgroundColor: '#1F2937',
@@ -244,8 +247,8 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
     marginBottom: 16,
   },
   statRow: {
@@ -258,12 +261,13 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '500',
   },
   statValue: {
     fontSize: 16,
-    color: '#F9FAFB',
-    fontWeight: '500',
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   subjectRow: {
     flexDirection: 'row',
@@ -273,7 +277,8 @@ const styles = StyleSheet.create({
   },
   subjectName: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
   },
   subjectTime: {
     fontSize: 14,
@@ -281,8 +286,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   emptyText: {
-    color: '#9CA3AF',
+    color: '#D1D5DB',
     fontSize: 14,
+    fontWeight: '500',
     textAlign: 'center',
     paddingVertical: 20,
   },
@@ -305,7 +311,7 @@ const styles = StyleSheet.create({
   },
   rankingRankText: {
     fontSize: 16,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
     fontWeight: '600',
   },
   rankingRankTextTop: {
@@ -317,12 +323,14 @@ const styles = StyleSheet.create({
   },
   rankingName: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '600',
     marginBottom: 2,
   },
   rankingSessions: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
   },
   rankingHours: {
     fontSize: 16,

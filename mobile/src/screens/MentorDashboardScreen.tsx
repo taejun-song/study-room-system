@@ -235,19 +235,21 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '600',
   },
   userName: {
     fontSize: 24,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   logoutButton: {
     padding: 8,
   },
   logoutText: {
-    color: '#9CA3AF',
+    color: '#FFFFFF',
     fontSize: 14,
+    fontWeight: '600',
   },
   content: {
     flex: 1,
@@ -267,13 +269,14 @@ const styles = StyleSheet.create({
   },
   statValue: {
     fontSize: 32,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
     marginBottom: 4,
   },
   statLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '600',
   },
   card: {
     backgroundColor: '#1F2937',
@@ -291,16 +294,18 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   viewAllText: {
     fontSize: 14,
-    color: '#6B7280',
+    color: '#E5E7EB',
+    fontWeight: '600',
   },
   emptyText: {
-    color: '#9CA3AF',
+    color: '#D1D5DB',
     fontSize: 14,
+    fontWeight: '500',
     textAlign: 'center',
     paddingVertical: 20,
   },
@@ -320,8 +325,8 @@ const styles = StyleSheet.create({
   },
   qaStudent: {
     fontSize: 16,
-    fontWeight: '500',
-    color: '#F9FAFB',
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
   statusBadge: {
     paddingHorizontal: 8,
@@ -335,17 +340,20 @@ const styles = StyleSheet.create({
   },
   qaSubject: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
     marginBottom: 4,
   },
   qaSummary: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
     marginBottom: 8,
   },
   qaTime: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
     marginBottom: 8,
   },
   acceptButton: {
@@ -375,16 +383,18 @@ const styles = StyleSheet.create({
   },
   absenceType: {
     fontSize: 14,
-    fontWeight: '500',
-    color: '#F9FAFB',
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
   absenceDate: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
   },
   absenceReason: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '500',
   },
   actionButton: {
     flexDirection: 'row',
@@ -402,11 +412,13 @@ const styles = StyleSheet.create({
   },
   actionTitle: {
     fontSize: 16,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '600',
     marginBottom: 2,
   },
   actionDescription: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
   },
 });

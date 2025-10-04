@@ -224,8 +224,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   tabs: {
     flexDirection: 'row',
@@ -244,12 +244,13 @@ const styles = StyleSheet.create({
     borderBottomColor: '#6B7280',
   },
   tabText: {
-    color: '#9CA3AF',
+    color: '#D1D5DB',
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   tabTextActive: {
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '700',
   },
   searchContainer: {
     padding: 16,
@@ -261,8 +262,9 @@ const styles = StyleSheet.create({
     borderColor: '#374151',
     borderRadius: 12,
     padding: 12,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontSize: 14,
+    fontWeight: '500',
   },
   content: {
     flex: 1,
@@ -273,8 +275,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    color: '#9CA3AF',
+    color: '#D1D5DB',
     fontSize: 14,
+    fontWeight: '500',
   },
   mentorCard: {
     backgroundColor: '#1F2937',
@@ -292,12 +295,13 @@ const styles = StyleSheet.create({
   },
   mentorName: {
     fontSize: 18,
-    fontWeight: '500',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   mentorUniversity: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
     marginTop: 2,
   },
   rating: {
@@ -308,11 +312,13 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     fontSize: 12,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   mentorBio: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
     marginBottom: 12,
   },
   subjects: {
@@ -330,7 +336,8 @@ const styles = StyleSheet.create({
   },
   subjectText: {
     fontSize: 12,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   bookButton: {
     backgroundColor: '#6B7280',
@@ -341,7 +348,7 @@ const styles = StyleSheet.create({
   bookButtonText: {
     color: '#FFFFFF',
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   bookingCard: {
     backgroundColor: '#1F2937',
@@ -359,8 +366,8 @@ const styles = StyleSheet.create({
   },
   bookingMentor: {
     fontSize: 16,
-    fontWeight: '500',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   statusBadge: {
     paddingHorizontal: 8,
@@ -370,21 +377,24 @@ const styles = StyleSheet.create({
   statusText: {
     fontSize: 10,
     color: '#FFFFFF',
-    fontWeight: '600',
+    fontWeight: '700',
   },
   bookingSubject: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '600',
     marginBottom: 4,
   },
   bookingSummary: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
     marginBottom: 8,
   },
   bookingTime: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
   },
   answer: {
     marginTop: 12,
@@ -394,11 +404,13 @@ const styles = StyleSheet.create({
   },
   answerLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '600',
     marginBottom: 4,
   },
   answerText: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
   },
 });

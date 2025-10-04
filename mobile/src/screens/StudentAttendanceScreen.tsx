@@ -153,8 +153,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   monthSelector: {
     flexDirection: 'row',
@@ -170,12 +170,13 @@ const styles = StyleSheet.create({
   },
   monthButtonText: {
     fontSize: 24,
-    color: '#9CA3AF',
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   monthText: {
     fontSize: 16,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
   content: {
     flex: 1,
@@ -186,8 +187,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    color: '#9CA3AF',
+    color: '#D1D5DB',
     fontSize: 14,
+    fontWeight: '500',
   },
   dayCard: {
     backgroundColor: '#1F2937',
@@ -208,8 +210,8 @@ const styles = StyleSheet.create({
   },
   dayDate: {
     fontSize: 16,
-    color: '#F9FAFB',
-    fontWeight: '500',
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   dayTotal: {
     fontSize: 16,
@@ -233,12 +235,14 @@ const styles = StyleSheet.create({
   },
   sessionTime: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
     marginBottom: 2,
   },
   sessionDuration: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
   },
   sourceBadge: {
     backgroundColor: '#374151',
@@ -251,7 +255,7 @@ const styles = StyleSheet.create({
   },
   sourceBadgeText: {
     fontSize: 10,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontWeight: '600',
   },
 });

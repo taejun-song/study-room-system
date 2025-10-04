@@ -215,19 +215,21 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
   },
   userName: {
     fontSize: 24,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   logoutButton: {
     padding: 8,
   },
   logoutText: {
-    color: '#9CA3AF',
+    color: '#E5E7EB',
     fontSize: 14,
+    fontWeight: '600',
   },
   content: {
     flex: 1,
@@ -243,8 +245,8 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
     marginBottom: 16,
   },
   attendanceButton: {
@@ -281,13 +283,14 @@ const styles = StyleSheet.create({
   },
   statValue: {
     fontSize: 32,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
     marginBottom: 4,
   },
   statLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '600',
   },
   actionButton: {
     flexDirection: 'row',
@@ -305,11 +308,13 @@ const styles = StyleSheet.create({
   },
   actionTitle: {
     fontSize: 16,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '600',
     marginBottom: 2,
   },
   actionDescription: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
   },
 });

@@ -123,11 +123,12 @@ export default function StudentAbsenceScreen() {
                 selectedValue={type}
                 onValueChange={setType}
                 style={styles.picker}
+                itemStyle={styles.pickerItem}
               >
-                <Picker.Item label="Absent (All Day)" value="ABSENT" />
-                <Picker.Item label="Late Arrival" value="LATE" />
-                <Picker.Item label="Early Leave" value="EARLY_LEAVE" />
-                <Picker.Item label="Off-site" value="OFFSITE" />
+                <Picker.Item label="Absent (All Day)" value="ABSENT" color="#FFFFFF" />
+                <Picker.Item label="Late Arrival" value="LATE" color="#FFFFFF" />
+                <Picker.Item label="Early Leave" value="EARLY_LEAVE" color="#FFFFFF" />
+                <Picker.Item label="Off-site" value="OFFSITE" color="#FFFFFF" />
               </Picker>
             </View>
 
@@ -244,12 +245,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   backButton: {
-    color: '#9CA3AF',
+    color: '#FFFFFF',
     fontSize: 16,
+    fontWeight: '600',
   },
   newRequestButton: {
     backgroundColor: '#6B7280',
@@ -279,8 +281,9 @@ const styles = StyleSheet.create({
     borderColor: '#374151',
   },
   label: {
-    color: '#D1D5DB',
+    color: '#FFFFFF',
     fontSize: 14,
+    fontWeight: '600',
     marginBottom: 8,
     marginTop: 16,
   },
@@ -291,7 +294,11 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   picker: {
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+  },
+  pickerItem: {
+    color: '#FFFFFF',
+    backgroundColor: '#1F2937',
   },
   input: {
     backgroundColor: '#111827',
@@ -299,8 +306,9 @@ const styles = StyleSheet.create({
     borderColor: '#374151',
     borderRadius: 12,
     padding: 12,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontSize: 14,
+    fontWeight: '500',
   },
   textArea: {
     height: 100,
@@ -323,8 +331,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    color: '#9CA3AF',
+    color: '#D1D5DB',
     fontSize: 14,
+    fontWeight: '500',
   },
   requestCard: {
     backgroundColor: '#1F2937',
@@ -342,8 +351,8 @@ const styles = StyleSheet.create({
   },
   requestType: {
     fontSize: 16,
-    fontWeight: '500',
-    color: '#F9FAFB',
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
   statusBadge: {
     paddingHorizontal: 10,
@@ -357,12 +366,14 @@ const styles = StyleSheet.create({
   },
   requestDate: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
     marginBottom: 8,
   },
   requestReason: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
     marginBottom: 12,
   },
   approvalStatus: {
@@ -379,12 +390,13 @@ const styles = StyleSheet.create({
   },
   approvalLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '600',
     marginBottom: 4,
   },
   approvalValue: {
     fontSize: 12,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontWeight: '600',
   },
   comment: {
@@ -395,11 +407,13 @@ const styles = StyleSheet.create({
   },
   commentLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '600',
     marginBottom: 4,
   },
   commentText: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
   },
 });

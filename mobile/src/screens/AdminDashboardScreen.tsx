@@ -60,13 +60,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '600',
   },
   content: {
     padding: 24,
@@ -81,13 +82,14 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 18,
-    fontWeight: '600',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
     marginBottom: 8,
   },
   cardText: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '500',
   },
   logoutButton: {
     backgroundColor: '#DC2626',

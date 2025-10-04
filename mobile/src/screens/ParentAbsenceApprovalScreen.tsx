@@ -211,8 +211,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
   },
   content: {
     flex: 1,
@@ -223,8 +223,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    color: '#9CA3AF',
+    color: '#D1D5DB',
     fontSize: 14,
+    fontWeight: '500',
   },
   requestCard: {
     backgroundColor: '#1F2937',
@@ -242,30 +243,33 @@ const styles = StyleSheet.create({
   },
   requestType: {
     fontSize: 18,
-    fontWeight: '500',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
     marginBottom: 4,
   },
   requestDate: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '500',
   },
   mentorDecision: {
     alignItems: 'flex-end',
   },
   mentorLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '600',
     marginBottom: 4,
   },
   mentorStatus: {
     fontSize: 12,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontWeight: '600',
   },
   requestReason: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
     marginBottom: 12,
   },
   mentorComment: {
@@ -276,19 +280,22 @@ const styles = StyleSheet.create({
   },
   commentLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#D1D5DB',
+    fontWeight: '600',
     marginBottom: 4,
   },
   commentText: {
     fontSize: 14,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+    fontWeight: '500',
   },
   commentInput: {
     marginBottom: 12,
   },
   commentInputLabel: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '600',
     marginBottom: 8,
   },
   textInput: {
@@ -297,8 +304,9 @@ const styles = StyleSheet.create({
     borderColor: '#374151',
     borderRadius: 8,
     padding: 12,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontSize: 14,
+    fontWeight: '500',
     minHeight: 60,
     textAlignVertical: 'top',
   },
@@ -319,7 +327,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#10B981',
   },
   rejectButtonText: {
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontSize: 14,
     fontWeight: '600',
   },

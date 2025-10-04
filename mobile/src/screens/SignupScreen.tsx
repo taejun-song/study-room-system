@@ -116,10 +116,11 @@ export default function SignupScreen({ navigation }: Props) {
               selectedValue={role}
               onValueChange={setRole}
               style={styles.pickerStyle}
+              itemStyle={styles.pickerItem}
             >
-              <Picker.Item label="Student" value="STUDENT" />
-              <Picker.Item label="Parent" value="PARENT" />
-              <Picker.Item label="Mentor" value="MENTOR" />
+              <Picker.Item label="Student" value="STUDENT" color="#FFFFFF" />
+              <Picker.Item label="Parent" value="PARENT" color="#FFFFFF" />
+              <Picker.Item label="Mentor" value="MENTOR" color="#FFFFFF" />
             </Picker>
           </View>
         </View>
@@ -167,14 +168,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
-    fontWeight: '300',
-    color: '#F9FAFB',
+    fontWeight: '700',
+    color: '#FFFFFF',
     marginBottom: 8,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 14,
-    color: '#9CA3AF',
+    color: '#E5E7EB',
+    fontWeight: '600',
     marginBottom: 32,
     textAlign: 'center',
   },
@@ -185,15 +187,17 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     marginBottom: 16,
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontSize: 16,
+    fontWeight: '500',
   },
   pickerContainer: {
     marginBottom: 16,
   },
   label: {
-    color: '#D1D5DB',
+    color: '#FFFFFF',
     fontSize: 14,
+    fontWeight: '600',
     marginBottom: 8,
   },
   picker: {
@@ -203,7 +207,11 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   pickerStyle: {
-    color: '#F9FAFB',
+    color: '#FFFFFF',
+  },
+  pickerItem: {
+    color: '#FFFFFF',
+    backgroundColor: '#1F2937',
   },
   button: {
     backgroundColor: '#6B7280',
@@ -225,11 +233,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   linkText: {
-    color: '#9CA3AF',
+    color: '#E5E7EB',
     fontSize: 14,
+    fontWeight: '500',
   },
   linkTextBold: {
-    color: '#F9FAFB',
+    color: '#FFFFFF',
     fontWeight: '600',
   },
 });
